@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // String.prototype.render = function (obj) {
+        //     let that = this;
+        //     Object.keys(obj).forEach(key => {
+        //         const val = obj[key];
+        //         if (typeof val === "object") {
+        //             Object.keys(val).forEach(k => {
+        //                 that = that.replace(`$\{${key}.${k}}`, val[k]);
+        //             })
+        //         } else {
+        //             that = that.replace(`$\{${key}}`, val);
+        //         }
+        //     })
+        //     return that
+        // }
+        // String.prototype.render = function (obj) {
+        //     // 利用了ES6的解构、对象keys新方法，在函数内部解构并自动展开变量
+        //     eval(`var {${Object.keys(obj).join(',')}} = obj`)
+        //     // 利用eval使字符串直接作为ES6解析
+        //     return eval('`' + this + '`')
+        // }
+        // 代码由掘金大神@一口怪兽一口烟提供
+        String.prototype.render = function (obj) {
+            with(obj) {
+                return eval('`' + this + '`')
+            }
+        }
+
+        var greeting = 'My name is ${name}, age ${age}, I am a ${job.jobName}';
+        var employee = {
+            name: 'XiaoMing',
+            age: 11,
+            job: {
+                jobName: 'designer',
+                jobLevel: 'senior'
+            }
+        };
+        var result = greeting.render(employee);
+        console.log(result);
+    </script>
+</body>
+
+</html>

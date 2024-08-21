@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            try {
+                // todo
+            } catch (error) {
+                // 手动捕获
+                console.log(error)
+            } finally {
+                // todo
+            }
+            // 自动捕获
+            window.onerror = function (msg, source, line, column, error) {
+                // 对跨域的js,如cdn不会有详细的报错信息
+                // 对压缩后的js代码，需要配合sourceMap,反差到为压缩代码的行列信息
+            }
+        </script>
+    </body>
+</html>

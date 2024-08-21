@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>统计 SDK</title>
+</head>
+<body>
+    <!-- <p>统计 SDK</p> -->
+
+    <button id="btn1">send pv</button>
+    <button id="btn2">send ok</button>
+    <button id="btn3">send err</button>
+    <button id="btn4">send Promise.err</button>
+
+    <script>
+        const PV_URL_SET = new Set()
+
+        class MyStatistic {
+            constructor(productId) {
+                this.productId = productId
+
+                this.initPerformance() // 性能统计
+                this.initError() // 错误监控
+            }
+
+            // 发送统计数据
+            send(url, params = {}) {
+                url = "http://localhost:9001"
+                params.productId = this.productId
+
+                const paramArr = []
+                for (let key in params) {
+                    paramArr.push(`${key}=${params[key]}`)
+                }
+
+                const newUrl = `${url}?${paramArr.join('&')}` // url?a=10&b=20
+                console.log("newUrl", newUrl);
+                // 用 <img> 发送：1. 可跨域；2. 兼容性非常好
+                const img = document.createElement('img')
+                img.src = newUrl // get
+            }
+
+            // 初始化性能统计
+            initPerformance() {
+                const url = 'yyy'
+                this.send(url, performance.timing) // 给最原始的、完整的结果，原始数据
+            }
+
+            // 初始化错误监控
+            initError() {
+                window.addEventListener('error', event => {
+                    const { error, lineno, colno } = event
+                    this.error(error, { lineno, colno, lineno })
+                })
+                // Promise 未 catch 住的报错
+                window.addEventListener('unhandledrejection', event => {
+                    const {stack} = event.reason
+                    this.error(new Error(event.reason), { stack, type: 'unhandledrejection' })
+                })
+            }
+
+            pv() {
+                const href = location.href
+                if (PV_URL_SET.has(href)) return // 不重复发送 pv
+
+                this.event('pv')
+
+                PV_URL_SET.add(href)
+            }
+
+            event(key, val) {
+                const url = 'xxx' // 自定义事件统计 server API
+                this.send(url, {key, val})
+            }
+
+            error(err, info = {}) {
+                const url = 'zzz'
+                const { message } = err
+                const { stack, lineno, colno, type} = info
+                this.send(url, { message, lineno, colno,type,stack  })
+            }
+        }
+
+        const s = new MyStatistic('a1') // DOMContentLoaded
+        // s.pv() // SPA 路由切换 PV
+
+        // s.event('vip', 'close')
+
+        // try {
+        // } catch(ex) {
+        //     s.error(ex, {})
+        // }
+
+        // Vue
+        // React
+
+    </script>
+    <script>
+        document.getElementById("btn1").addEventListener("click", () => {
+            s.pv()
+        })
+        document.getElementById("btn2").addEventListener("click", () => {
+            s.event('vip', 'close')
+        })
+        document.getElementById("btn3").addEventListener("click", () => {
+            // console.log(a)
+            // setTimeout(() => {
+            //     console.log(b)
+            // })
+            new Promise((resolve,reject) => { 
+                JSON.parse('')
+                resolve();
+            })
+        })
+        document.getElementById("btn4").addEventListener("click", () => {
+            new Promise((resolve, reject) => {
+                resolve()
+            }).then(() => {
+                console.log(promise)
+            })
+            // .catch(e => {
+            //     console.log("err", e);
+            // })
+        })
+    </script>
+    <!-- <script src="http://localhost:9001?a=3212"></script> -->
+</body>
+</html>

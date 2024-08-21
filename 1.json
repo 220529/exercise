@@ -1,0 +1,10 @@
+{
+  "username": "超级管理员",
+  "password": "wwwwwww",
+  "profile": {
+    "gender": 0,
+    "address": "fdsfl"
+  },
+  "photos": [{ "url": "https://lagou-zhaopin-fe.lagou.com/fed/lg-app-fed/2023-draw/report/0/0.png" }],
+  "roles": ["1", "2"]
+}

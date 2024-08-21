@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .wrap {
+      position: relative;
+      width: 936px;
+      height: 119px;
+      margin: 50px 0 0 50px;
+      /* font-size: 0; */
+      overflow: hidden;
+    }
+
+    .cont {
+      position: absolute;
+      top: 0;
+      left: 0;
+      /* 宽度 大于容器的两倍即可 */
+      width: 200%;
+      display: flex;
+
+      animation-duration: 15s;
+      /* 动画持续时间 */
+      animation-name: move;
+      /* 动画名称 */
+      animation-iteration-count: infinite;
+      /* 动画无限循环 */
+      animation-timing-function: linear;
+      /* 动画速度曲线为线性 */
+    }
+
+    .cont2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      /* 宽度 大于容器的两倍即可 */
+      width: 200%;
+      display: flex;
+
+      animation-delay: 2s;
+      /* 动画延时 */
+      animation-duration: 15s;
+      /* 动画持续时间 */
+      animation-name: move;
+      /* 动画名称 */
+      animation-iteration-count: infinite;
+      /* 动画无限循环 */
+      animation-timing-function: linear;
+      /* 动画速度曲线为线性 */
+    }
+
+    .wrap2 {
+      animation-name: move2;
+      animation-duration: 2.5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+      /* 动画只执行一次 */
+    }
+
+    .wrap img {
+      display: inline-block;
+      /* 宽度 等于容器的宽度 */
+      width: 50%;
+    }
+
+    .wrap:hover .cont {
+      -webkit-animation-play-state: paused;
+    }
+
+    @keyframes move {
+
+      /* 原理 left值的变化 移动一个容器的宽度 */
+      0% {
+        left: 0;
+      }
+
+      100% {
+        left: -100%;
+      }
+    }
+
+    @keyframes move2 {
+
+      /* 原理 left值的变化 移动一个容器的宽度 */
+      0% {
+        transform: translateX(10%)
+      }
+
+      100% {
+        transform: translateX(0)
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+    <div class="cont">
+      <img src="https://lagou-zhaopin-fe.lagou.com/fed/lg-app-fed/2023-draw/barrage/0.png" />
+      <img src="https://lagou-zhaopin-fe.lagou.com/fed/lg-app-fed/2023-draw/barrage/0.png" />
+    </div>
+  </div>
+
+  <div class="wrap wrap2">
+    <div class="cont2">
+      <img src="https://lagou-zhaopin-fe.lagou.com/fed/lg-app-fed/2023-draw/barrage/0.png" />
+      <img src="https://lagou-zhaopin-fe.lagou.com/fed/lg-app-fed/2023-draw/barrage/0.png" />
+    </div>
+  </div>
+
+</body>
+
+</html>

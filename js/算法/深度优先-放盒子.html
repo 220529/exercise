@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // n个数放到m个盒子中
+        const n = [1, 2, 3];
+        let m = [];
+        const book = {};
+
+        function run(s) {
+            for (let i = 0; i < n.length; i++) {
+                const e = n[i];
+                // 盒子满了
+                if (s === n.length) {
+                    console.log("m", m);
+                    return
+                }
+                if (!book[e]) {
+                    m[s] = e;
+                    book[e] = 1;
+                    run(s + 1);
+                    book[e] = 0
+                }
+            }
+            return
+        }
+        run(0);
+        // console.log("book", book);
+        // console.log("m", m);
+    </script>
+</body>
+
+</html>

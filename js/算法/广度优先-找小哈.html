@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // n：行，m：列
+        const n = 5;
+        const m = 4;
+        const a = [
+            [0, 0, 1, 0],
+            [0, 0, 0, 0],
+            [0, 0, 1, 0],
+            [0, 1, 0, 0],
+            [0, 0, 0, 1]
+        ]
+        const b = [1, 1];
+        const t = [4, 3];
+        const fn = () => {
+            b.forEach((i, j) => (b[j] = i - 1));
+            t.forEach((i, j) => (t[j] = i - 1));
+            const book = [];
+            for (let i = 0; i < n; i++) {
+                book.push(new Array(m).fill(0))
+            }
+            const d = [
+                [0, 1],
+                [1, 0],
+                [0, -1],
+                [-1, 0]
+            ]
+            class Node {
+                constructor(x, y, f, s) {
+                    this.x = x;
+                    this.y = y;
+                    this.f = f;
+                    this.s = s;
+                }
+            }
+            class Queue {
+                constructor(h, tail) {
+                    this.h = 0;
+                    this.tail = 0;
+                    this.data = []
+                }
+                addData(item) {
+                    this.data.push(item);
+                    this.tail++;
+                }
+                getCNode() {
+                    return this.data[this.h]
+                }
+                getNode(i) {
+                    return this.data[i]
+                }
+                gotoNext() {
+                    this.h++
+                }
+            }
+            let f = false;
+            const [x, y] = b;
+            const [x2, y2] = t;
+            const queue = new Queue();
+            queue.addData(new Node(x, y, 0, 0));
+            while (queue.h < queue.tail) {
+                for (let i = 0; i < d.length; i++) {
+                    const e = d[i];
+                    const [x1, y1] = e;
+                    const cNode = queue.getCNode();
+                    const tx = cNode.x + x1;
+                    const ty = cNode.y + y1;
+                    if (tx < 0 || ty < 0 || tx > n - 1 || ty > m - 1) {
+                        continue
+                    }
+                    // 未被标记、不是墙
+                    if (!(book[tx][ty]) && !a[tx][ty]) {
+                        // 先标记
+                        book[tx][ty] = 1;
+                        queue.addData(new Node(tx, ty, queue.h, queue.getNode(queue.h).s + 1));
+                    }
+                    if (tx === x2 && ty === y2) {
+                        f = true;
+                        break
+                    }
+                }
+                if (f) {
+                    break
+                }
+                queue.gotoNext()
+            }
+            console.log("book", book)
+            console.log("queue", queue.getNode(queue.tail - 1).s)
+        }
+        console.time("test time");
+        fn()
+        console.timeEnd("test time");
+    </script>
+</body>
+
+</html>

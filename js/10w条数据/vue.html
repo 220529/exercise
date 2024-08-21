@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container li {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        {{ message }}
+        <ul>
+            <li v-for="item in list">{{item.num}}</li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@2"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                list: []
+            },
+            mounted() {
+                console.log("onMounted...")
+            },
+            methods: {
+                fnFetch() {
+                    const that = this;
+                    // 步骤一:创建异步对象
+                    const xml = new XMLHttpRequest();
+                    // 步骤二:设置请求的url参数,参数一是请求的类型,参数二是请求的url,可以带参数
+                    xml.open("get", "http://localhost:8000/");
+                    // 步骤三:发送请求
+                    xml.send()
+                    // 步骤四:注册事件 onreadystatechange 状态改变就会调用
+                    xml.onreadystatechange = function (e) {
+                        // console.log("e", e);
+                        if (e.target.readyState === 4 && e.target.status === 200) {
+                            this.data.list = JSON.parse(e.target.response)
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

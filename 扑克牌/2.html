@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="puke-wrapper">
+      <div>L</div>
+      <div>O</div>
+      <div>A</div>
+      <div>D</div>
+      <div>I</div>
+      <div>N</div>
+      <div>G</div>
+    </div>
+  </body>
+  <style>
+    .puke-wrapper {
+      position: relative;
+      top: 35%;
+      left: 40%;
+      width: 100px;
+      height: 150px;
+    }
+    .puke-wrapper div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-size: 20px;
+      font-weight: 400;
+      background-color: #fff;
+      border-radius: 12px;
+      transform-origin: left bottom;
+      border: 2px solid #000000;
+    }
+    /*以下代码只显示部分，其余同理。*/
+    @keyframes puke-o {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(10deg);
+      }
+    }
+    @keyframes puke-a {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(20deg);
+      }
+    }
+    .puke-wrapper div:nth-child(2) {
+      animation: puke-o 2s infinite;
+    }
+    .puke-wrapper div:nth-child(3) {
+      animation: puke-a 2s infinite;
+    }
+  </style>
+</html>

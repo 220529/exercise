@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        margin: 10px;
+        width: 20px;
+        height: 20px;
+        background: red;
+      }
+      /* 半圆 */
+      .half-circle {
+        height: 10px;
+        border-radius: 10px 10px 0 0;
+      }
+      /* 扇形 */
+      .sector {
+        border-radius: 20px 0 0;
+      }
+      /* 三角 */
+      .triangle {
+        width: 0px;
+        height: 0px;
+        background: none;
+        border: 10px solid red;
+        border-color: red transparent transparent transparent;
+      }
+      /* 梯形 */
+      .ladder {
+        width: 10px;
+        height: 0px;
+        background: none;
+        border: 10px solid red;
+        border-color: red transparent transparent transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="half-circle"></div>
+    <div class="sector"></div>
+    <div class="triangle"></div>
+    <div class="ladder"></div>
+  </body>
+</html>

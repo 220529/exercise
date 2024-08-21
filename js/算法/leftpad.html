@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const str = "hello";
+        const len = 10;
+        const chr = "0";
+        const n = 10000000;
+        const leftpad1 = (s, l, c) => {
+            l = l - s.length;
+            return s + Array(l + 1).join(c)
+        }
+        // console.log(leftpad1(str, len, chr));
+        // console.time("leftpad1")
+        // for (let i = 0; i < n; i++) {
+        //     leftpad1(str, len, chr)
+        // }
+        // console.timeEnd("leftpad1")
+        const leftpad2 = (s, l, c) => {
+            l = l - s.length;
+            let t = "";
+            while (l) {
+                if (l % 2 === 1) {
+                    t += c
+                }
+                if (l === 1) {
+                    return s + t
+                }
+                c += c
+                l = parseInt(l / 2)
+            }
+        }
+        // 00
+        // 0000
+        // 00000000
+        // l 11 5 2 1
+        // c 0 00 0000 00000000
+        // t 0 000 000,00000000
+
+        // 20       00
+        // 10       0000
+        // 5        0000, 0
+        // 2        0000,0000
+        // l 20 10   5         2                    1
+        // c 00 0000 0000,0000 0000,0000,0000,0000  
+        // t 0000,
+
+        // 0 00 0,0000
+        // l/2/2/2 = 3
+        // 3*2*2*2 = l
+        // l 11 5 2 1
+        // c 0 00 0000 00000000
+        // t 0 000 000,00000000
+
+        // console.log(leftpad2(str, len, chr));
+        console.time("leftpad2")
+        for (let i = 0; i < n; i++) {
+            leftpad2(str, len, chr)
+        }
+        console.timeEnd("leftpad2")
+        const leftpad3 = (s, l, c) => {
+            l = l - s.length;
+            let t = "";
+            while (l) {
+                if (l & 1) {
+                    t += c
+                }
+                if (l === 1) {
+                    return s + t
+                }
+                c += c;
+                l = l >> 1;
+            }
+        }
+        // console.log(leftpad3(str, len, chr));
+        console.time("leftpad3")
+        for (let i = 0; i < n; i++) {
+            leftpad3(str, len, chr)
+        }
+        console.timeEnd("leftpad3")
+    </script>
+</body>
+
+</html>

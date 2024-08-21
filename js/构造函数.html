@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>构造函数</title>
+</head>
+
+<body>
+  <script>
+    let name = "window..."
+
+    function F(name) {
+      this.name = name
+    }
+    let f = F("F")
+    console.log("f", f)
+    console.log("name", name)
+
+    function test() {
+
+    }
+    let t = new test()
+    console.log("t", t);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: rosybrown;
+        }
+
+        #mydiv {
+            padding: 10px;
+            margin: 10px;
+            border: 10px solid blue;
+            width: 300px;
+            height: 200px;
+            background-color: yellow;
+            position: relative;
+            overflow: auto;
+            /* box-sizing: border-box; */
+            /* box-sizing: content-box; */
+        }
+
+        #mydiv2 {
+            /* display: none; */
+            border: 10px solid red;
+            width: 150px;
+            height: 500px;
+            background-color: green;
+            padding: 10px;
+            margin: 10px;
+            /* top: 5px;
+            left: 5px;
+            position: absolute; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mydiv" style="top: 20px">
+        <div id="mydiv2"></div>
+    </div>
+    <script>
+        const fields = ["clientLeft", "clientTop", "offsetLeft", "offsetTop", "clientWidth", "clientHeight",
+            "offsetWidth", "offsetHeight", "scrollTop", "scrollLeft", "scrollWidth", "scrollHeight", "innerHeight"
+        ];
+
+        function log(id) {
+            const d1 = document.getElementById(id);
+            // console.log(d1.style.top);
+            // console.log(d1.style.height);
+            for (let i = 0; i < fields.length; i++) {
+                const field = fields[i];
+                console.log(`${id}.${field}: ${d1[field]}`)
+            }
+        }
+        log("mydiv");
+        console.log("======================");
+        log("mydiv2");
+        // const d2 = document.getElementById("mydiv2");
+    </script>
+</body>
+
+</html>

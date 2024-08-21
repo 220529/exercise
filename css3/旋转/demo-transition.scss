@@ -1,0 +1,17 @@
+.demo-1 {
+  width: 512px;
+  height: 512px;
+  border-radius: 50%;
+  background: url(./1.jpeg);
+  animation: round 1s steps(12) infinite;
+
+  // &:hover {
+  //   transform: rotate(45deg)
+  // }
+}
+
+@keyframes round {
+  100% {
+    transform: rotate(360deg);
+  }
+}

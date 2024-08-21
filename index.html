@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    /* 样式可以根据需要进行自定义 */
+    .select-box {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="select-box">
+    <button onclick="toggleDropdown()">Toggle Dropdown</button>
+    <div class="dropdown" id="dropdown">
+      <ul>
+        <li>Option 1</li>
+        <li>Option 2</li>
+        <li>Option 3</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const dropdown = document.getElementById('dropdown');
+    const selectBox = document.querySelector('.select-box');
+
+    function toggleDropdown() {
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // 处理点击下拉框之外的区域
+    window.addEventListener('click', function (event) {
+      if (event.target !== selectBox && !selectBox.contains(event.target)) {
+        dropdown.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二分</title>
+</head>
+
+<body>
+  <script>
+    function fn(n, arr) {
+      let y = 0
+      let x = arr[y].length - 1
+      while (y < arr.length && x >= 0) {
+        if (arr[y][x] < n) {
+          y++
+        } else if (arr[y][x] > n) {
+          x--
+        } else if (arr[y][x] === n) {
+          return true
+        }
+      }
+      return false
+    }
+    //测试用例 
+    console.log(fn(10, [
+      [1, 2, 3, 4],
+      [5, 9, 10, 11],
+      [13, 20, 21, 23]
+    ]));
+    let cur = 0
+
+    function e(n) {
+      while (n > 0.1) {
+        cur++
+        n = Math.floor(n / 2)
+      }
+    }
+    e(1000)
+    console.log("cur", cur);
+  </script>
+</body>
+
+</html>

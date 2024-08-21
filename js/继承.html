@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>继承</title>
+</head>
+
+<body>
+  <script>
+    class F {
+      constructor(name) {
+        this.name = name
+      }
+    }
+    class F1 extends F {
+      constructor(name) {
+        super(name)
+      }
+    }
+    let f = new F1('f')
+    console.log("f", f);
+    console.log(f.__proto__ === F1.prototype);
+    console.log(f.constructor === F1);
+    console.log(F1.__proto__ === F);
+    console.log(F1.__proto__.__proto__ === Function.prototype);
+    console.log(F.__proto__ === Function.prototype);
+  </script>
+</body>
+
+</html>

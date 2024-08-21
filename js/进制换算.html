@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 二进制转十进制：按权展开法。1100.0011
+        const binToDec = b => {
+            const [s1, s2] = b.split(".");
+            const zs = s1.split("").reverse().join("");
+            const xs = s2;
+            let r = 0;
+            for (let i = 0; i < zs.length; i++) {
+                const v = zs[i];
+                // 整数：2的n方
+                r += v * Math.pow(2, i)
+            }
+            if (xs) {
+                for (let i = 0; i < xs.length; i++) {
+                    const v = xs[i];
+                    // 小数：2的-n方
+                    r += v * Math.pow(2, -(i + 1))
+                }
+            }
+            return r
+        }
+        const r = binToDec("1100.0011");
+        console.log("r", r);
+        // 十进制转二进制
+        const decToBin = (d, l = 49) => {
+            // 取出整数位、小数位
+            const [s1, s2] = d.toString().split(".");
+            const zs = parseInt(s1);
+            const xs = s2 ? Number(`0.${s2}`) : s2;
+            let zr = "";
+            // 整数：重复相除法
+            const zf = n => {
+                // 取模：收集余数(0或1)
+                zr += n % 2
+                if (n === 1) {
+                    return
+                }
+                // 累计除以2
+                zf(n >> 1)
+            }
+            if (zs) {
+                zf(zs)
+                // 结果倒序
+                zr = zr.split("").reverse().join("");
+            }
+            let xr = "";
+            // 小数：重复相乘法。累乘2，直到小数部位是0
+            const xf = n => {
+                // 长度不能大于最大位数
+                if (xr.length >= l) {
+                    return
+                }
+                // 乘2
+                n *= 2;
+                const [x, y] = n.toString().split(".");
+                // 收集整数位：0或1
+                xr += x
+                // 将小数位继续乘2。没有y，说明小数部位没有了
+                if (y) {
+                    xf(Number(`0.${y}`));
+                }
+            }
+            xs && xf(xs);
+            const r = [zr || 0, xr].join('.');
+            console.log("r", r.length, r)
+            return parseFloat(r)
+        }
+        const r2 = decToBin(0.1);
+        // const r2 = decToBin(2.3555);
+        console.log("r2", r2);
+        // 指数位，指数范围：阶码范围为 [1, 2046]，所以指数范围为 [-1022, 1023]
+        // 所有尾数位为0，代表无穷大
+        // 每一位都为1，尾数位非全为0，代表 NaN
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const p1 = new Promise((resolve, reject) => {})
+            console.log(p1)
+            const p2 = new Promise((resolve, reject) => {
+                setTimeout(() => resolve())
+            })
+            console.log(p2)
+            setTimeout(() => {
+                console.log('setTimeout', p2)
+            })
+            const p3 = new Promise((resolve, reject) => {
+                setTimeout(() => reject(2))
+            })
+            console.log(p3)
+            setTimeout(() => {
+                console.log('setTimeout', p3)
+            })
+            // console.log('promise')
+            // Promise.resolve(1).then((r) => {
+            //     console.log('resolve', r)
+            // })
+            // Promise.reject(1)
+            //     .then((r) => {
+            //         console.log('reject', r)
+            //     })
+            //     .catch((e) => {
+            //         console.log('catch', e)
+            //     })
+        </script>
+    </body>
+</html>

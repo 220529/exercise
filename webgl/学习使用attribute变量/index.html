@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #canvas {
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="400" height="400">
+    此浏览器不支持canvas
+  </canvas>
+  <script src="../lib/index.js"></script>
+  <script>
+    const ctx = document.getElementById("canvas");
+    const gl = ctx.getContext('webgl')
+
+    const VERTEX_SHADER_SOURCE = `
+      void main() {
+        // 要绘制的点的坐标
+        gl_Position = vec4(0.0,0.0,0.0,1.0);
+        // 点的大小
+        gl_PointSize = 30.0;
+      }
+    `;
+    // 片元着色器
+    const FRAGMENT_SHADER_SOURCE = `
+      void main() {
+        gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+      }
+    `;
+
+    const program = initShader(gl, VERTEX_SHADER_SOURCE, FRAGMENT_SHADER_SOURCE);
+
+    gl.drawArrays(gl.POINTS, 0, 1)
+  </script>
+</body>
+
+</html>

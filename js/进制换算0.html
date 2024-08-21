@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 二进制转十进制
+        // 这里参数n要直接传入二进制小数的字符串形式，
+        //如果直接传入一个二进制小数，无论是利用'' +n 还是利用String(n)去转字符串，都会将原值截断，只保留19位，导致最后计算错误
+        function BinToDec(n) {
+            // let arr = ('' + n).split('.');  这样会导致计算错误。
+            let arr = n.split('.');
+            let ZS = arr[0].split('');
+            let XS = arr[1] ? arr[1].split('') : [];
+            let zsSum = 0;
+            let xsSum = 0;
+            let i = 0;
+            let j = 1;
+            while (ZS.length) {
+                let num = parseInt(ZS.pop());
+                zsSum += Math.pow(2, i) * num;
+                i++;
+            }
+            if (XS.length) {
+                while (XS.length) {
+                    let num = parseInt(XS.shift());
+                    xsSum += Math.pow(2, -j) * num;
+                    j++;
+                }
+            }
+            return zsSum + xsSum;
+        }
+        // 二进制：1100.0011 ===> 十进制：12.1875
+        /**
+         * [integerToBin 十进制整数转二进制]
+         * @param   {[type]}       n    [n description]
+         * @return  {[]}                [return description]
+         */
+        function integerToBin(n) {
+            // 如果商大于0，继续递归调用，否则返回空字符串用于与前面的结果连接
+            if (n > 0) {
+                // 获得数字除2后的商
+                let quotient = parseInt(n / 2);
+                let remainder = n % 2;
+                return integerToBin(quotient) + '' + remainder;
+            }
+            return '';
+        }
+
+        /**
+         * [fracToBin 小数转二进制]
+         * @param   {[type]}       n     [n 需要转换为二进制的小数]
+         * @param   {[type]}       bits  [bits 准换后的二进制小数的位数]
+         * @param   {undefined[]}  bin   [arr 转换后的二进制小数，默认为空]
+         * @return  {[]}                 [return description]
+         */
+        function fracToBin(n, bits = 49, bin = '') {
+            // 如果二进制位小于给定的位数
+            if (bin.length < bits) {
+                // 1. 将需要转换的小数分为整数部分与小数部分，获得小数部分
+                let xs = ('' + n).split('.')[1];
+                // 2. 小数部分乘以2
+                //  2.1小数部分字符串转数字
+                let xsNumber = parseFloat('0.' + xs);
+                // 2.2 小数部分乘以2
+                let a = xsNumber * 2;
+                // 3. 取出数字的整数部分拼接到二进制小数的结果中
+                let ta = ('' + a).split('.');
+                bin += ta[0];
+                let na = parseFloat('0.' + ta[1]);
+                // 如果小数部分等于0，则返回
+                if (parseFloat(na) == 0) {
+                    return bin;
+                }
+                // 否则递归
+                return fracToBin(na, bits, bin);
+            }
+            return bin;
+        }
+
+        /**
+         * [DecToBin 十进制转二进制]
+         * @param   {[type]}  n  [n description]
+         * @return  {[type]}     [return description]
+         */
+        function DecToBin(n) {
+            let inter, frac;
+            let arr = ('' + n).split('.');
+            inter = arr[0] === '0' ? arr[0] : integerToBin(arr[0]);
+            frac = arr[1] ? '.' + fracToBin(parseFloat('0.' + arr[1])) : '';
+            return [inter, frac].join('');
+            // return parseFloat([inter, frac].join(''));
+        }
+        var a = DecToBin(2.3555);
+        console.log("a", a);
+    </script>
+</body>
+
+</html>

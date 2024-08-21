@@ -1,0 +1,41 @@
+body,
+html {
+  height: 100%;
+}
+
+.content {
+  position: relative;
+  height: 100%;
+  background-color: #f2f2f2;
+  overflow: hidden;
+
+  .water {
+    position: absolute;
+    width: 4px;
+    height: 6px;
+    opacity: 0;
+    background-color: red;
+    clip-path: ellipse(10% 30% at 50% 50%);
+    transform: scale(10);
+    animation: drops 1.2s cubic-bezier(0.8, 0.03, 0.21, 0.18) infinite
+  }
+}
+
+@keyframes drops {
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(10px, 100vh, -10px);
+  }
+}

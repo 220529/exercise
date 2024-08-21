@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            if (false) {
+                var a = 123
+            }
+            console.log('a', a)
+            if (true) {
+                let b = 33
+            }
+            // console.log('b', b)
+
+            let a, i
+            for (i = 0; i < 10; i++) {
+                a = document.createElement('a')
+                a.innerHTML = i + '<br>'
+                ;(function (n) {
+                    a.addEventListener('click', function (e) {
+                        e.preventDefault()
+                        alert(n)
+                    })
+                })(i)
+                document.body.appendChild(a)
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // O(1)
+        function fnO1(obj, key) {
+            return obj[key]
+            // 虽然会执行4-5次。但用代码写出来的计算量都是O(1)
+            // return obj.a + obj.b + obj.c
+        }
+
+        function fnOn(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                console.log("i", i);
+            }
+        }
+
+        function fnOn2(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr.length; j++) {
+                    console.log("j", j);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

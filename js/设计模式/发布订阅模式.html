@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Event {
+      constructor() {
+        this.cbs = []
+      }
+      $emit(name, arg) {
+        let cbs = this.cbs[name]
+        cbs.forEach(cb => {
+          cb(arg)
+        });
+      }
+      $on(name, cb) {
+        if (!this.cbs[name]) {
+          this.cbs[name] = []
+        }
+        this.cbs[name].push(cb)
+      }
+    }
+    let event = new Event()
+    event.$on("click", (arg) => {
+      console.log("click", arg)
+    })
+    event.$emit("click", "哈哈，发布订阅")
+
+    // if (performanceLevel === 'S') {
+    //   return salary * 4;
+    // }
+    // if (performanceLevel === 'A') {
+    //   return salary * 3;
+    // }
+    // if (performanceLevel === 'B') {
+    //   return salary * 2;
+    // }
+
+    // var strategies = {
+    //   "S": function (salary) {
+    //     return salary * 4;
+    //   },
+    //   "A": function (salary) {
+    //     return salary * 3;
+    //   },
+    //   "B": function (salary) {
+    //     return salary * 2;
+    //   }
+    // };
+  </script>
+</body>
+
+</html>

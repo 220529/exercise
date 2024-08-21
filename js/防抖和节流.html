@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        body {
+            height: 3000px;
+        }
+    </style>
+    <body>
+        <input type="text" id="inp" />
+        <script>
+            const obj = { a: 1 }
+            // 防抖：什么时候停止，什么时候执行。场景：输入框的模糊搜索、按钮点击等
+            function debounce(fn, delay = 100) {
+                let timer = null
+                return function (...args) {
+                    clearTimeout(timer)
+                    timer = setTimeout(() => {
+                        fn.apply(this, args)
+                    }, delay)
+                }
+            }
+            function fnChange(e) {
+                console.log('val = ', e.target.value)
+            }
+            const inp = document.getElementById('inp')
+            inp.addEventListener('keyup', debounce(fnChange, 300))
+
+            function throttle(fn, time = 100) {
+                let oldTime = null
+                return function (...args) {
+                    const newTime = new Date().getTime()
+                    if (newTime - time > oldTime) {
+                        oldTime = newTime
+                        fn.apply(this, args)
+                    }
+                }
+            }
+            function throttle(fn, time = 100) {
+                let timer = null
+                return function (...args) {
+                    if (!timer) {
+                        timer = setTimeout(() => {
+                            fn.apply(this, args)
+                            timer = null
+                        }, time)
+                    }
+                }
+            }
+            function fnRun() {
+                console.log('run...')
+            }
+            window.addEventListener('scroll', throttle(fnRun, 200))
+        </script>
+    </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05像素</title>
+  <style>
+    div {
+      width: 100px;
+      height: 10px;
+      /* background-color: red; */
+      margin: 30px;
+    }
+
+    .h05 {
+      /* transform: scaleY(0.5);
+      transform-origin: 50% 100%; */
+    }
+
+    .border05 {
+      width: 100px;
+      height: 20px;
+      border: red solid 4px;
+      
+      transform: scaleY(0.5);
+    }
+
+    .border1 {
+      border: red solid 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <p>0.5px</p>
+  <div class="h05"></div>
+  <div class="border05"></div>
+  <p>1.0px</p>
+  <div class="h1"></div>
+  <div class="border1"></div>
+  <script>
+    // var obj = {
+    //   val: 1
+    // }
+    // var a = new Proxy(obj, {
+    //   get(target) {
+    //     console.log("111", target.val);
+    //     return target
+    //   },
+    // });
+    var a = [1, 2, 3]
+    a.join = a.shift
+    // console.log("a", a + "1");
+
+    if (a == 1 && a == 2 && a == 3) {
+      console.log(1);
+    }
+
+    function _t() {
+      // setTimeout(() => {
+      //   console.log("defer");
+      //   return 2
+      // }, 1000)
+      return setTimeout(() => {
+        console.log("set");
+        return 3
+      }, 1000)
+    }
+    // var a = _t()
+    // console.log("a", a);
+    // async function _b() {
+    //   let c = await _t()
+    //   console.log("eeee");
+    //   console.log("c", c);
+    // }
+    // _b()
+    // console.log("ddd");
+  </script>
+</body>
+
+</html>

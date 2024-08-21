@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./炸弹人.js"></script>
+    <script>
+        const m = 13;
+        const n = 13;
+        console.log(maps)
+        // maps.forEach(i => {
+        //     console.log(i)
+        // });
+        let t = 0;
+        let o = {};
+        for (let i = 1; i < m - 1; i++) {
+            for (let j = 1; j < n - 1; j++) {
+                const v = maps[i][j];
+                if (v === ".") {
+                    let x = i,
+                        y = j,
+                        s = 0;
+                    // 上
+                    while (maps[x][y] !== "#") {
+                        if (maps[x][y] === 'G') {
+                            s++
+                        }
+                        x--;
+                    }
+                    // 下
+                    x = i, y = j;
+                    while (maps[x][y] !== "#") {
+                        if (maps[x][y] === 'G') {
+                            s++
+                        }
+                        x++;
+                    }
+                    // 右
+                    x = i, y = j;
+                    while (maps[x][y] !== "#") {
+                        if (maps[x][y] === 'G') {
+                            s++
+                        }
+                        y++;
+                    }
+                    // 左
+                    x = i, y = j;
+                    while (maps[x][y] !== "#") {
+                        if (maps[x][y] === 'G') {
+                            s++
+                        }
+                        y--;
+                    }
+                    // console.log("s", s);
+                    if (t < s) {
+                        t = s;
+                        o = {
+                            i,
+                            j
+                        }
+                    }
+                }
+            }
+        }
+        console.log("t", t, o)
+        // console.log("maps", maps)
+    </script>
+</body>
+
+</html>

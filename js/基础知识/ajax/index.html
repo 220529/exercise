@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script src="./xml.js"></script>
+        <script src="./jsonp.js"></script>
+        <script>
+            console.log('ajax...')
+            // fnXml({ url: 'http://localhost:9001/err' })
+            //     .then((r) => {
+            //         console.log('r', r)
+            //     })
+            //     .catch((err) => {
+            //         console.log('err', err)
+            //     })
+            fnFetch({ url: 'http://localhost:9001/err' })
+                .then((r) => {
+                    console.log('r', r)
+                })
+                .catch((err) => {
+                    console.log('err', err)
+                })
+
+            function fnJsonpSuccess(res) {
+                console.log('fnJsonpSuccess.res', res)
+            }
+            const jsonpUrl = 'http://localhost:9001/jsonp'
+            // fnJsonp(jsonpUrl, 'fnJsonpSuccess')
+        </script>
+    </body>
+</html>

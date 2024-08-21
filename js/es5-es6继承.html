@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>es5-es6继承</title>
+</head>
+
+<body>
+  <script>
+    // class Super {
+    //   say() {
+
+    //   }
+    // }
+    // class Sub extends Super {}
+
+    // const sub = new Sub();
+    // console.log("sub", sub);
+    // console.log("Sub", Sub);
+    // console.log(sub.__proto__ === Sub.prototype);
+    // console.log(Sub.__proto__ === Super);
+    // 定义父类
+    class Father {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+
+      show() {
+        console.log(`我叫:${this.name}， 今年${this.age}岁`);
+      }
+    };
+
+    // 通过extends关键字实现继承
+    class Son extends Father {
+
+    };
+
+    let son = new Son('陈先生', 3000);
+
+    son.show(); // 我叫陈先生 今年3000岁
+
+
+
+
+
+    function _instanceof(left, right) {
+      if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
+        return !!right[Symbol.hasInstance](left);
+      } else {
+        return left instanceof right;
+      }
+    }
+
+    function _classCallCheck(instance, Constructor) {
+      if (!_instanceof(instance, Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+      }
+    }
+
+    var Arr = function Arr() {
+      _classCallCheck(this, Arr);
+    };
+  </script>
+</body>
+
+</html>

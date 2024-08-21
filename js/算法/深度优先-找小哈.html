@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // n：行，m：列
+        const n = 5;
+        const m = 4;
+        const a = [
+            [0, 0, 1, 0],
+            [0, 0, 0, 0],
+            [0, 0, 1, 0],
+            [0, 1, 0, 0],
+            [0, 0, 0, 1]
+        ]
+        const b = [1, 1];
+        const t = [4, 3];
+        const d = [
+            [0, 1],
+            [1, 0],
+            [0, -1],
+            [-1, 0]
+        ]
+        b.forEach((i, j) => (b[j] = i - 1));
+        t.forEach((i, j) => (t[j] = i - 1));
+        const [x0, y0] = t;
+        let minStep = 99;
+        const book = [];
+        for (let i = 0; i < n; i++) {
+            book.push(new Array(m).fill(0))
+        }
+        const dsf = (s, e, step) => {
+            for (let i = 0; i < d.length; i++) {
+                const [x, y] = d[i];
+                const tx = s + x;
+                const ty = e + y;
+                if (tx < 0 || ty < 0 || tx > n - 1 || ty > m - 1) {
+                    continue
+                }
+                if (tx === x0 && ty === y0) {
+                    if (minStep > step) {
+                        minStep = step;
+                    }
+                    return
+                }
+                if (!book[tx][ty] && !a[tx][ty]) {
+                    book[tx][ty] = 1;
+                    dsf(tx, ty, step + 1);
+                    book[tx][ty] = 0;
+                }
+            }
+            return
+        }
+        const fn = () => {
+            const [x, y] = b;
+            dsf(x, y, 1);
+            console.log("book", book)
+            console.log("minStep", minStep)
+        }
+        console.time("test time");
+        fn()
+        console.timeEnd("test time");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+$commonColor: red;
+$twoColor: blue;
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: $commonColor;
+  margin: 20px;
+}
+
+.demo-1 {
+  // transition: transform 12s ease;
+  transition: width 1s ease;
+
+  &:hover {
+    width: 500px;
+  }
+}
+
+.demo-2 {
+  .cell {
+    width: 200px;
+    height: 200px;
+    background-color: $twoColor;
+  }
+
+  &:hover {
+    .cell {
+      animation: move 2s linear infinite forwards
+    }
+  }
+}
+
+@keyframes move {
+  100% {
+    transform: translateX(200px);
+  }
+}
+
+.demo-3 {
+  border-radius: 50%;
+  margin: 40px auto;
+  animation: jump 1s cubic-bezier(0.64, 0.03, 1, 0.52) infinite
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+
+  // 40% {
+  //   transform: translateY(200px);
+  // }
+
+  90% {
+    transform: translateY(200px);
+    clip-path: ellipse(50% 50% at 50% 50%);
+  }
+
+  100% {
+    transform: translateY(0px);
+    clip-path: ellipse(50% 45% at 50% 48%);
+  }
+}

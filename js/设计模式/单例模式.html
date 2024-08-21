@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .model {
+      border: 1px solid black;
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      top: 20%;
+      left: 50%;
+      margin-left: -150px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <button id="loginBtn">打开</button>
+  <button id="close">打开</button>
+  <script>
+    function getSingle(fn) {
+      let result
+      return function (arg) {
+        return result ? result : result = fn(arg)
+      }
+    }
+
+    function createModel() {
+      let _div = document.createElement("div")
+      _div.setAttribute("class", "model")
+      _div.style.display = "none"
+      _div.innerHTML = "hdksahjdsahkdh"
+      let _root = document.getElementById("root")
+      _root.appendChild(_div)
+      return _div
+    }
+    let _openModel = getSingle(createModel)
+    let _loginBtn = document.getElementById("loginBtn")
+    _loginBtn.addEventListener("click", function () {
+      _openModel().style.display = 'block'
+    })
+    let _close = document.getElementById("close")
+    _close.addEventListener("click", function () {
+      _openModel().style.display = 'none'
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // var mySqrt = function (x) {
+    //   let cur = 0
+    //   while (x > 0.5) {
+    //     // cur++
+    //     console.log("x", x);
+    //     x = x / 2
+    //   }
+    //   return cur
+    // };
+    // console.log("mySqrt", mySqrt(8));
+
+    function _q(n) {
+      let l = 1
+      let r = n
+      let m = 0
+      while (l <= r) {
+        m = l + ((r - l) >> 1)
+        let t = m * m
+        if (t === n) {
+          return m
+        } else if (t > n) {
+          r = m - 1
+        } else {
+          l = m + 1
+        }
+      }
+      return r
+    }
+    console.log(_q(8));
+  </script>
+</body>
+
+</html>

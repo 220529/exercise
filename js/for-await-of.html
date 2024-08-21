@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const fnDelay = (val, t) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    // console.log(val + "   end")
+                    resolve(val)
+                }, t || 1000)
+            })
+        }
+        const fnFetch = () => {
+            return fetch('http://localhost:3001/', {
+                method: 'GET'
+            }).then(res => res.json()).then(res => res);
+        }
+        const fnUseFor = async () => {
+            const a1 = fnDelay(1);
+            const a2 = fnDelay(2);
+            const a3 = fnDelay(3);
+            const as = [a1, a2, a3]
+            console.time(1)
+            // Promise.all(as).then(r => {
+            //     console.log("r", r)
+            // })
+            for await (let p of as) {
+                console.log("p", p)
+            }
+            console.timeEnd(1)
+        }
+        const fnUseFor2 = async () => {
+            // const a1 = fnFetch();
+            // const a2 = fnFetch();
+            // const a3 = fnFetch();
+            // const as = [a1, a2, a3]
+            // console.time(2)
+            // for await (let p of as) {
+            //     console.log("p", p)
+            // }
+            // console.timeEnd(2)
+            const as = [fnFetch, fnFetch, fnFetch]
+            console.time(2)
+            for (let p of as) {
+                console.log("await p()", await p());
+            }
+            console.timeEnd(2)
+        }
+        fnUseFor2();
+        console.log("end")
+    </script>
+</body>
+
+</html>

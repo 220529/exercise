@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 中括号里的^代表非，*表示匹配前面的表达式任意次
+            function fnGetQuery(name) {
+                const search = location.search.substr(1)
+                const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, 'i')
+                const res = search.match(reg)
+                if (!res) {
+                    return res
+                }
+                return res[2]
+            }
+            function fnGetSearch(name) {
+                const search = new URLSearchParams(location.search)
+                return search.get(name)
+            }
+            function fntGetQuery(name) {
+                let query = window.location.search.substring(1)
+                let vars = query.split('&')
+                for (let i = 0; i < vars.length; i++) {
+                    let pair = vars[i].split('=')
+                    if (pair[0] == name) {
+                        return pair[1]
+                    }
+                }
+                return ''
+            }
+            const r = fntGetQuery('b')
+            // const r = fnGetQuery('b')
+            console.log('r', r)
+        </script>
+    </body>
+</html>

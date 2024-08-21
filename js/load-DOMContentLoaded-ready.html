@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <img
+            src="https://lagou-zhaopin-fe.lagou.com/fed/lg-www-node/795/1.png"
+            alt=""
+            srcset=""
+            id="img1"
+        />
+        <script>
+            window.addEventListener('load', function () {
+                console.log('load...')
+            })
+            window.addEventListener('DOMContentLoaded', function () {
+                console.log('DOMContentLoad...')
+            })
+            window.addEventListener('ready', function () {
+                console.log('ready...')
+            })
+            const img1 = document.getElementById('img1')
+            img1.addEventListener('load', function () {
+                console.log('img.load...')
+            })
+        </script>
+    </body>
+</html>

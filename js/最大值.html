@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const arr = [10, 2, 40, 50]
+            function max() {
+                const params = Array.prototype.slice.call(arguments)
+                let i = 1
+                let res = params[0]
+                while (i < params.length) {
+                    const num = params[i]
+                    if (num > res) res = num
+                    i++
+                }
+                return res
+            }
+            const m = max(...arr)
+            console.log('m', m)
+            const obj = { 0: 10, 1: 2, 2: 40, 3: 50, length: 4 }
+            console.log('obj', obj)
+            const s = Array.prototype.slice.call(obj)
+            console.log('s', s)
+        </script>
+    </body>
+</html>

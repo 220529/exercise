@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- <script src="./Promise1.js"></script> -->
+        <!-- <script src="./Promise2.js"></script> -->
+        <script src="./Promise3.js"></script>
+        <script src="./test.js"></script>
+        <script>
+            function fnTestResolveAndReject() {
+                const p1 = new MyPromise((resolve, reject) => {
+                    resolve(100)
+                    // throw new Error('p1 --- err')
+                    // setTimeout(() => {
+                    //     resolve(200)
+                    // }, 1000)
+                })
+                // console.log('p1', p1)
+                const p2 = p1.then((r1) => {
+                    console.log('r1', r1)
+                    // return r1 + 1
+                    return { a: 1 }
+                })
+                // console.log('p2', p2)
+                const p3 = p2.then((r2) => {
+                    console.log('r2', r2)
+                    return r2 + 2
+                })
+                const p4 = p3.catch((err) => {
+                    console.log('p4.catch', err)
+                    return 300
+                })
+                const p5 = p4.then((r4) => {
+                    console.log('r4', r4)
+                })
+
+                // console.log('p4', p4)
+
+                // const p1 = MyPromise.resolve(100)
+                // console.log('p1', p1)
+
+                // const p2 = MyPromise.reject('100 --- ')
+                // console.log('p2', p2)
+            }
+            function fnTestAllAndRace() {
+                const p1 = new MyPromise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve('2s.end ---')
+                    }, 2000)
+                })
+                const p2 = new MyPromise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve('5s.end ---')
+                    }, 5000)
+                })
+                const res = MyPromise.all([
+                    p1,
+                    MyPromise.resolve(100),
+                    p2
+                    // MyPromise.resolve(200)
+                    // MyPromise.reject('200 --- ')
+                ])
+                res.then((r) => {
+                    console.log('all.r', r)
+                }).catch((err) => {
+                    console.log('all.err', err)
+                })
+
+                const res2 = MyPromise.race([
+                    p1,
+                    // MyPromise.resolve(100),
+                    p2
+                    // MyPromise.reject('200 --- ')
+                ])
+                res2.then((r) => {
+                    console.log('race.r', r)
+                }).catch((err) => {
+                    console.log('race.err', err)
+                })
+
+                const p0 = function () {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            resolve('Promise.3s')
+                        }, 3000)
+                    })
+                }
+
+                const p01 = function () {
+                    return new MyPromise((resolve, reject) => {
+                        setTimeout(() => {
+                            resolve('MyPromise.3s')
+                        }, 3000)
+                    })
+                }
+
+                async function fnRun() {
+                    const r = await p01()
+                    console.log('await --- test.r', r)
+                }
+                fnRun()
+            }
+            fnTestResolveAndReject()
+            // fnTestAllAndRace()
+        </script>
+    </body>
+</html>

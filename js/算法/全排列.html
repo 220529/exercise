@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let arr = [1, 2]
+    var permute = function (nums) {
+      let list = []
+      backTree(list, [], nums)
+      console.log("list", list);
+    }
+
+    function backTree(list, temp, nums) {
+      if (temp.length === nums.length) {
+        return list.push([...temp])
+      }
+      for (let i = 0; i < nums.length; i++) {
+        if (temp.includes(nums[i])) {
+          continue
+        }
+        temp.push(nums[i])
+        backTree(list, temp, nums)
+        temp.pop()
+      }
+    }
+    permute(arr)
+  </script>
+</body>
+
+</html>

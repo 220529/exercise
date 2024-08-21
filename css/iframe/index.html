@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iframe</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <iframe id="qw" src="./iframe1.html" frameborder="0"></iframe>
+  <script>
+    let a = document.getElementById("qw");
+    console.log("contentDocument", a.contentDocument);
+    console.log("contentWindow", a.contentWindow.b);
+    let c = a.contentWindow
+    console.log("c", c.go);
+  </script>
+</body>
+
+</html>

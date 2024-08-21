@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var isValidSudoku = function (board) {
+            const l = board.length;
+            const isVaild = (x, y, board) => {
+                const n = board[x][y];
+                // 检查行
+                for (let i = 0; i < l; i++) {
+                    const v = board[x][i] === "."
+                    if (y === i || v) {
+                        continue
+                    }
+                    if (board[x][i] === n) {
+                        console.log("xx", x, i);
+                        return false
+                    }
+                }
+                // 检查列
+                for (let i = 0; i < l; i++) {
+                    const v = board[i][y] === "."
+                    if (x === i || v) {
+                        continue
+                    }
+                    if (board[i][y] === n) {
+                        return false
+                    }
+                }
+                // 检查九宫格
+                const i = Math.floor(x / 3);
+                const j = Math.floor(y / 3);
+                for (let a = 0; a < 3; a++) {
+                    for (let b = 0; b < 3; b++) {
+                        const c = i * 3 + a;
+                        const d = j * 3 + b;
+                        const v = board[c][d] === "."
+                        if ((c === x && d === y) || v) {
+                            continue
+                        }
+                        if (board[c][d] === n) {
+                            return false
+                        }
+                    }
+                }
+                return true
+            }
+            for (let x = 0; x < l; x++) {
+                for (let y = 0; y < l; y++) {
+                    if (!isVaild(x, y, board)) {
+                        return false
+                    }
+                }
+            }
+            return true
+        };
+        const a = [
+            ["5", "3", ".", ".", "7", ".", ".", ".", "."],
+            ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+            [".", "9", "8", ".", ".", ".", ".", "6", "."],
+            ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+            ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+            ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+            [".", "6", ".", ".", ".", ".", "2", "8", "."],
+            [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+            [".", ".", ".", ".", "8", ".", ".", "7", "9"]
+        ];
+        const r = isValidSudoku(a);
+        console.log("r", r);
+    </script>
+</body>
+
+</html>

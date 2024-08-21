@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var exist = function (board, word) {
+            if (board.length === 0) {
+                return false
+            }
+            if (word.length === 0) {
+                return true
+            }
+            const m = board.length;
+            const n = board[0].length;
+            const b = [{
+                    x: 0,
+                    y: 0
+                }, {
+                    x: 0,
+                    y: 1
+                }, // 右
+                {
+                    x: 1,
+                    y: 0
+                }, // 下
+                {
+                    x: 0,
+                    y: -1
+                }, // 左
+                {
+                    x: -1,
+                    y: 0
+                }, // 上
+            ]
+            const result = [];
+            const book = [];
+            let bool = false;
+            for (let i = 0; i < m; i++) {
+                book.push(new Array(n).fill(0))
+            }
+            const dfs = (x, y) => {
+                if (word === result.join("")) {
+                    return bool = true
+                }
+                for (let i = 0; i < b.length; i++) {
+                    const ds = b[i];
+                    const tx = x + ds.x;
+                    const ty = y + ds.y;
+                    if (tx < 0 || ty < 0 || tx > m - 1 || ty > n - 1 || book[tx][ty]) {
+                        continue
+                    }
+                    result.push(board[tx][ty]);
+                    let v = result.join("");
+                    if (word.startsWith(v)) {
+                        book[tx][ty] = 1;
+                        dfs(tx, ty);
+                        book[tx][ty] = 0;
+                    }
+                    result.pop()
+                }
+            }
+            for (let i = 0; i < m; i++) {
+                for (let j = 0; j < n; j++) {
+                    if (bool) {
+                        return bool
+                    }
+                    dfs(i, j);
+                }
+            }
+            console.log("result", result);
+            console.log("book", book);
+            return bool
+        };
+        var exist2 = function (board, word) {
+            const rows = board.length,
+                cols = board[0].length;
+            // 方向数组，方便从某一个元素向上下左右找相邻元素扩散
+            const directions = [
+                [0, 1],
+                [0, -1],
+                [1, 0],
+                [-1, 0],
+            ];
+            // 存储对应索引位上是否已遍历过了
+            const visited = new Array(rows)
+                .fill(false)
+                .map(() => new Array(cols).fill(false));
+
+            const dfs = (i, j, k) => {
+                // 矩阵索引位 i j中元素跟要找的字符串元素不相等，就直接返回false
+                if (board[i][j] != word.charAt(k)) return false;
+                // 前面的都已经匹配成功 k才会增长到字符串的最大长度位
+                else if (k == word.length - 1) return true;
+                visited[i][j] = true;
+                // 从矩阵索引位i j向上下左右遍历查找
+                for (const [dx, dy] of directions) {
+                    let newI = i + dx,
+                        newJ = j + dy;
+                    // 在矩阵索引范围内 并且没有访问过
+                    if (
+                        newI >= 0 &&
+                        newI < rows &&
+                        newJ >= 0 &&
+                        newJ < cols &&
+                        !visited[newI][newJ]
+                    ) {
+                        // 深度优先搜索
+                        const flag = dfs(newI, newJ, k + 1);
+                        if (flag) {
+                            return true;
+                        }
+                    }
+                }
+                visited[i][j] = false;
+                return false;
+            };
+
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    if (board[i][j] == word[0]) {
+                        // 从矩阵的任一一个元素点开始向四周扩散查找
+                        const flag = dfs(i, j, 0);
+                        // 找到了就可以立即返回了
+                        if (flag) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        };
+        const a = [
+            ["A", "A", "A", "A", "A", "A"],
+            ["A", "A", "A", "A", "A", "A"],
+            ["A", "A", "A", "A", "A", "A"],
+            ["A", "A", "A", "A", "A", "A"],
+            ["A", "A", "A", "A", "A", "B"],
+            ["A", "A", "A", "A", "B", "A"]
+        ];
+        const b = "AAAAAAAAAAAAABB";
+        const c = exist(a, b);
+        console.log("c", c);
+    </script>
+</body>
+
+</html>

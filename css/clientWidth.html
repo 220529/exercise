@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8</title>
+  <style>
+    body {
+      height: 300px;
+    }
+
+    #fi {
+      margin: 30px;
+    }
+
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="fi"></div>
+  <script>
+    let fi = document.getElementById("fi")
+    console.log("fi.offsetLeft", fi.offsetLeft);
+    console.log("fi.offsetWidth", fi.offsetWidth);
+    console.log("fi.scrollTop", fi.scrollTop);
+    console.log("fi.offsetTop", fi.offsetTop);
+    console.log("fi.clientWidth", fi.clientWidth);
+
+    // 网页可见区域宽： document.body.clientWidth;
+    // 网页可见区域高： document.body.clientHeight;
+    // 网页可见区域宽： document.body.offsetWidth(包括边线的宽);
+    // 网页可见区域高： document.body.offsetHeight(包括边线的宽);
+    // 网页正文全文宽： document.body.scrollWidth;
+    // 网页正文全文高： document.body.scrollHeight;
+    // 网页被卷去的高： document.body.scrollTop;
+    // 网页被卷去的左： document.body.scrollLeft;
+    // 网页正文部分上： window.screenTop;
+    // 网页正文部分左： window.screenLeft;
+    // 屏幕分辨率的高： window.screen.height;
+    // 屏幕分辨率的宽： window.screen.width;
+    // 屏幕可用工作区高度： window.screen.availHeight;
+    function showClient() {
+      var clientWidth = document.body.clientWidth
+      console.log("clientWidth", clientWidth)
+      var clientHeight = document.body.clientHeight
+      console.log("clientHeight", clientHeight)
+
+      var offsetWidth = document.body.offsetWidth
+      console.log("offsetWidth", offsetWidth)
+      var offsetHeight = document.body.offsetHeight
+      console.log("offsetHeight", offsetHeight)
+
+      var screenTop = window.screenTop
+      console.log("screenTop", screenTop)
+      var screenLeft = window.screenLeft
+      console.log("screenLeft", screenLeft)
+
+      var height = window.screen.height
+      console.log("height", height)
+      var width = window.screen.width
+      console.log("width", width)
+    }
+    showClient()
+    window.onscroll = showClient
+    window.onresize = showClient
+  </script>
+</body>
+
+</html>

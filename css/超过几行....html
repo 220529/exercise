@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 1120px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+
+      span {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        cursor: pointer;
+        color: #175199;
+        width: 47px;
+        background-color: #fff;
+        height: 20px;
+        line-height: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+      <span>...展开</span>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      $('span').on({
+        click: function () {
+          var txt = $(this).html()
+          if (txt == '...展开') {
+            $(this).html('收起').css('position', 'inherit')
+            $('div').css({
+              '-webkit-box-orient': 'inherit',
+              height: 'auto'
+            })
+          } else {
+            $(this).html('...展开').css('position', 'absolute')
+            $('div').css({
+              height: '60px',
+              '-webkit-box-orient': ' vertical'
+            })
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

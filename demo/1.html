@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 加密函数
+    function caesarEncrypt (plaintext, key) {
+      let encryptedText = "";
+      for (let i = 0; i < plaintext.length; i++) {
+        let char = plaintext[i];
+        if (char.match(/[a-z]/i)) {
+          let shift = char === char.toUpperCase() ? 'A'.charCodeAt() : 'a'.charCodeAt();
+          let encryptedChar = String.fromCharCode((char.charCodeAt() - shift + key + 26) % 26 + shift);
+          encryptedText += encryptedChar;
+        } else {
+          encryptedText += char;
+        }
+      }
+      return encryptedText;
+    }
+
+    // 解密函数
+    function caesarDecrypt (encryptedText, key) {
+      return caesarEncrypt(encryptedText, -key);
+    }
+
+    // 变量生成器函数
+    function variableGenerator (originalVariable, key) {
+      let encryptedVariableName = caesarEncrypt(originalVariable, key);
+
+      // 返回加密后的变量名和变量映射对象
+      return {
+        encryptedVariableName: encryptedVariableName,
+        variableMapping: {
+          [encryptedVariableName]: originalVariable
+        }
+      };
+    }
+
+    // 示例使用
+    let originalVariableName = "my_variable2";
+    let encryptionKey = 3;
+
+    let result = variableGenerator(originalVariableName, encryptionKey);
+    let encryptedVariableName = result.encryptedVariableName;
+    let variableMapping = result.variableMapping;
+
+    // 假设我们在这里使用加密后的变量名来表示变量（这是为了示例，实际使用中可能会有其他方式）
+    let encryptedVar = encryptedVariableName; // 使用加密后的变量名
+
+    // 解密查看原变量名称
+    let decryptedVariableName = variableMapping[encryptedVar] || null;
+
+    // 输出结果
+    console.log("加密后的变量名: " + encryptedVariableName);
+    console.log("解密后的变量名称: " + decryptedVariableName);
+
+  </script>
+</body>
+
+</html>

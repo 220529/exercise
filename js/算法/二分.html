@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function _e(str, length, ch) {
+      let len = length - str.length
+      let total = ""
+      while (len) {
+        if (len % 2 === 1) {
+          total += ch
+        }
+        if (len === 1) {
+          return total + str
+        }
+        ch += ch
+        len = parseInt(len / 2)
+      }
+    }
+    let str = _e("hello", 20, "0")
+    console.log("str", str.length, str);
+  </script>
+</body>
+
+</html>

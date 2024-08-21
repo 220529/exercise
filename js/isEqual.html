@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const a = { a: 1, b: { c: 1 } }
+            const b = { a: 1, b: { c: 1, d: 0 } }
+            function isObject(obj) {
+                return typeof obj === 'object' && obj !== null
+            }
+            function isEqual(obj1, obj2) {
+                // 有一个是值类型
+                if (!isObject(obj1) || !isObject(obj2)) {
+                    return obj1 === obj2
+                }
+                if (obj1 === obj2) return true
+                const keys1 = Object.keys(obj1)
+                const keys2 = Object.keys(obj2)
+                if (keys1.length !== keys2.length) return false
+                for (let i in obj1) {
+                    const res = isEqual(obj1[i], obj2[i])
+                    if (!res) return false
+                }
+                return true
+            }
+            console.log(isEqual(a, b))
+            var x = 100
+            const obj = { a: 1, b: 2, length: 2 }
+            function fn(a, b) {
+                var x = 200
+                console.log('x, a, b', this.x, a, b)
+            }
+            fn.apply(null, obj)
+        </script>
+    </body>
+</html>

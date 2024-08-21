@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./LinkList.js"></script>
+    <script>
+        const linkList = new LinkList();
+        linkList.append(1);
+        linkList.append(2);
+        linkList.append(3);
+        linkList.append(2);
+        linkList.append(4);
+        const all = linkList.print();
+        console.log("all", all)
+        // linkList.remove(2);
+        linkList.removeByAt(2)
+        const all2 = linkList.print();
+        console.log("all2", all2)
+    </script>
+</body>
+
+</html>

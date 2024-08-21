@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>菲波那切数列</title>
+</head>
+
+<body>
+  <script>
+    // 0 1 1 2 3 5 8 13 21
+    function _f1(n) {
+      return n < 2 ? n : (_f1(n - 1) + _f1(n - 2))
+    }
+
+    function _t() {
+      let cur = 2
+      let cache = [0, 1, 1]
+      return function (n) {
+        if (cur < n) {
+          for (let i = cur; i < n + 1; i++) {
+            cache[i] = cache[i - 1] + cache[i - 2]
+          }
+          cur = n
+        }
+        return cache[n]
+      }
+    }
+    let _f = _t()
+    console.log("_f1(5)", _f1(8));
+    console.log("_f(5)", _f(8));
+  </script>
+</body>
+
+</html>

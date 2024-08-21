@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr = [4, 9, 2, 10, 5, 6, 7, 1, 3, 8, 0];
+
+        function quickSort(l, r) {
+            if (l > r) {
+                return
+            }
+            const t = arr[l];
+            let i = l,
+                j = r;
+            while (i < j) {
+                while (arr[j] >= t && i < j) {
+                    j--
+                }
+                while (arr[i] <= t && i < j) {
+                    i++
+                }
+                if (i < j) {
+                    const p = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = p;
+                }
+            }
+            arr[l] = arr[i];
+            arr[i] = t;
+            quickSort(l, i - 1);
+            quickSort(i + 1, r);
+        }
+        console.time("test time");
+        quickSort(0, arr.length - 1)
+        console.timeEnd("test time");
+        console.log(arr);
+
+        function quickSort2(a) {
+            if (!a || !a.length) {
+                return []
+            }
+            const t = Math.floor(a.length / 2);
+            const v = a[t];
+            const l = [];
+            const r = [];
+            for (let i = 0; i < a.length - 1; i++) {
+                const temp = a[i]
+                if (a[i] < v) {
+                    l.push(a[i])
+                } else if (a[i] > v) {
+                    r.push(a[i])
+                }
+            }
+            return [...quickSort2(l), v, ...quickSort2(r)]
+        }
+        // console.time("test time");
+        // console.log(("quickSort2", quickSort2(arr)));
+        // console.timeEnd("test time");
+    </script>
+</body>
+
+</html>

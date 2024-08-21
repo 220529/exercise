@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    .marquee-container {
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-content {
+      display: inline-block;
+    }
+
+    img {
+      width: 936px;
+      height: 119px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="marquee-container">
+    <div class="marquee-content" id="marquee">
+      <img src="https://lagou-zhaopin-fe.lagou.com/fed/lg-app-fed/2023-draw/barrage/0.png" alt="Marquee Image">
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      var container = $(".marquee-container");
+      var content = $("#marquee");
+
+      function marquee() {
+        // 克隆第一个图片
+        var clone = content.find('img').clone();
+
+        // 将克隆的图片插入到容器末尾
+        content.append(clone);
+
+        // 设置动画，让图片向左移动
+        content.animate({ "margin-left": "-100%" }, 10000, "linear", function () {
+          // 动画结束后，删除第一个图片，将margin-left重置为0
+          content.find('img:first').remove();
+          content.css("margin-left", "0");
+
+          // 继续滚动
+          marquee();
+        });
+      }
+
+      marquee(); // 初始调用
+
+      // 如果鼠标悬停在跑马灯上，停止滚动
+      container.mouseenter(function () {
+        content.stop();
+      });
+
+      // 当鼠标离开跑马灯时，继续滚动
+      container.mouseleave(function () {
+        marquee();
+      });
+    });
+  </script>
+
+</body>
+
+</html>

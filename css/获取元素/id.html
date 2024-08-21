@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="div1">div1</div>
+  <div id="div1">div2</div>
+  <div class="div2">div3</div>
+  <div class="div2">div4</div>
+  <script>
+    const div1 = document.getElementById("div1");
+    console.log("div1", div1);
+    const div2 = document.querySelectorAll("#div1");
+    console.log("div2", div2);
+    const div3 = document.querySelector("#div1");
+    console.log("div3", div3);
+  </script>
+</body>
+
+</html>

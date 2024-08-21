@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>变量提升</title>
+</head>
+
+<body>
+  <script>
+    // console.log("A", a);
+
+    // var a = 1;
+    // var b = function a(x) {
+    //   x && a(--x);
+    // };
+    // console.log(a);
+
+    // function value() {
+    //   return 1;
+    // }
+    // var value = 1;
+    // console.log("value", value);
+
+    console.log("a", a);
+    var a = 0
+
+    function a() {
+      console.log("aaaaa");
+    }
+    console.log("a", a);
+
+    // console.log("b", b);
+    // var b = 0
+
+    // var b = function () {
+    //   console.log("bbbb");
+    // }
+
+    // getName() //oaoafly
+    // var getName = function () {
+    //   console.log('wscat')
+    // }
+    // getName() //wscat
+    // function getName() {
+    //   console.log('oaoafly')
+    // }
+    // getName() //wscat
+  </script>
+</body>
+
+</html>

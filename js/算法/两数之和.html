@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>算法/两数之和</title>
+</head>
+
+<body>
+  <script>
+    let nums = [2, 7, 11, 15]
+    let target = 9
+
+    function _t(arr, target) {
+      let obj = {}
+      for (let i = 0; i < arr.length; i++) {
+        let t = arr[i]
+        if ((target - t) in obj) {
+          return [obj[target - t], i]
+        } else {
+          obj[t] = i
+        }
+      }
+    }
+    console.log(_t(nums, target));
+  </script>
+</body>
+
+</html>

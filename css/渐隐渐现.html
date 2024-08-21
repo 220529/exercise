@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      .anim-opacity2 {
+        top: 200px;
+        left: 200px;
+        position: absolute;
+        width: 50px;
+        height: 28px;
+        animation: 2s opacity2 .5s infinite;
+        -webkit-animation: 2s opacity2 .5s infinite;
+        -moz-animation: 2s opacity2 .5s infinite;
+      }
+      @keyframes opacity2 {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.9;
+        }
+        100% {
+          top: 160px;
+          opacity: 0;
+        }
+      }
+      @-webkit-keyframes opacity2 {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.9;
+        }
+        100% {
+          top: 160px;
+          opacity: 0;
+        }
+      }
+      @-moz-keyframes opacity2 {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.9;
+        }
+        100% {
+          top: 160px;
+          opacity: 0;
+        }
+      }
+      .aa {
+        width: 200px;
+        height: 200px;
+      }
+      img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h1 class="anim-opacity2">测试</h1> -->
+    <!-- <img
+      class="anim-opacity2"
+      src="https://lagou-zhaopin-fe.lagou.com/fed/lg-app-fed/promotion-season/weekly/%E7%9F%A9%E5%BD%A2%402x%20(1).png"
+      alt=""
+      srcset=""
+    /> -->
+    <div class="aa">
+      <img src="https://lagou-zhaopin-fe.lagou.com/fed/lg-app-fed/promotion-season/weekly/iphone/%E6%88%98%E5%A3%AB%402x.png" alt="" srcset="">
+    </div>
+  </body>
+</html>

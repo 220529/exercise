@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var maxArea = function (height) {
+            let l = 0;
+            let r = height.length - 1;
+            let t = 0;
+            while (l < r) {
+                const w = r - l;
+                const h1 = height[l];
+                const h2 = height[r];
+                const h = Math.min(h1, h2);
+                if (t < w * h) {
+                    t = w * h
+                }
+                if (h1 <= h2) {
+                    l++
+                } else if (h1 > h2) {
+                    r--
+                }
+            }
+            return t
+        };
+        const arr = [1, 8, 6, 2, 5, 4, 8, 3, 7];
+        const t = maxArea(arr);
+        console.log("t", t);
+    </script>
+</body>
+
+</html>

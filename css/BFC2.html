@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFC2</title>
+  <style>
+    /* .div1 {
+      width: 100px;
+      height: 100px;
+      background: lightblue;
+      margin: 100px;
+    }
+
+    .f1 {
+      overflow: hidden;
+    }
+
+    .ss {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    } */
+
+    .f1 {
+      border: 1px solid black;
+      /* overflow: hidden; */
+    }
+
+    .c-a::after {
+      display: block;
+      clear: both;
+      content: "";
+    }
+
+    .c-aa:after,
+    .c-aa:before {
+      display: table;
+      content: "";
+    }
+
+    .c-aa:after {
+      /* display: block; */
+      clear: both;
+      /* content: ""; */
+    }
+
+    .c-aa {
+      *zoom: 1
+    }
+
+    .s1 {
+      float: left;
+      width: 100px;
+      height: 100px;
+      background: pink;
+    }
+
+    .s2 {
+      float: right;
+      width: 30px;
+      height: 120px;
+      background: blue;
+      writing-mode: vertical-lr
+    }
+
+    .w1 {
+      height: 100px;
+      /* width: 200px; */
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="f1 c-aa">
+    <div class="s1">s1</div>
+    <div class="s2">s2327193792183789327289137937829137937894732847</div>
+  </div>
+  <span>3213</span>
+  <div class="w1">w1</div>
+  <!-- <div style="height: 100px;width: 100px;float: left;background: lightblue">我是一个左浮动的元素</div>
+  <div style="height: 200px;background: #eee;">我是一个没有设置浮动,
+    也没有触发 BFC 元素, width: 200px; height:200px; background: #eee;</div> -->
+  <!-- <div class="ss">12122</div> -->
+  <!-- <div style="border: 1px solid #000; overflow: hidden;">
+    <div style="width: 100px;height: 100px;background: #eee;float: left;"></div>
+    <span>22</span>
+  </div>
+  <span>111</span> -->
+  <!-- <div class="f1">
+    <div class="div1"></div>
+    <div class="div1"></div>
+  </div>
+  <div class="f1">
+    <div class="div1"></div>
+    <div class="div1"></div>
+  </div> -->
+  <script>
+    (function (graph) {
+      function require(module) {
+        var exports = {};
+
+        function localrequire(locaPath) {
+          return require(graph[module].dependencies[locaPath])
+        }
+        // 先执行入口文件代码，
+        (function (require, exports, code) {
+          eval(code)
+        })(localrequire, exports, graph[module].code)
+        return exports
+      }
+      // 引入入口文件路径
+      require('${this.entry}');
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const reg = /^[a-zA-Z]\w{5,29}$/
+            // []: 多选一，\w: 字母数字下划线，{}: 长度范围
+            // 英文字母
+            // 邮箱
+            const email = /\d{6}/
+            // 日期格式
+            const date = /^\d{4}[-/:]{1}\d{1,2}[-/:]{1}\d{1,2}$/
+            // ip地址
+            const ip = /\d+\.\d+\.\d+\.\d+/
+
+            const str = '   12  3    '
+            console.log('str', str)
+            String.prototype.customTrim = function () {
+                return this.replace(/^\s+/, '').replace(/\s+$/, '')
+            }
+            console.log('str', str.customTrim())
+        </script>
+    </body>
+</html>

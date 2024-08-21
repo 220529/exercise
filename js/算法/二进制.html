@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function add(n, a) {
+      let result = 1
+      while (n) {
+        result = result * a
+        n--
+      }
+      return result
+    }
+
+    function _add(n, a = 2) {
+      let total = 0
+      while (n >= 0) {
+        total += add(n, a)
+        n--
+      }
+      return total
+    }
+    console.log("totals", _add(7));
+  </script>
+</body>
+
+</html>

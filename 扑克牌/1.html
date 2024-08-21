@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>application</title>
+  </head>
+  <body>
+    <div class="flexBox">
+      <div class="cardBox">
+        <div class="cardForeCover">
+          <img src="image/image1.png" />
+        </div>
+        <div class="cardBackCover">
+          <div>鼠</div>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardForeCover">
+          <img src="image/image2.png" />
+        </div>
+        <div class="cardBackCover">
+          <div>牛</div>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardForeCover">
+          <img src="image/image3.png" />
+        </div>
+        <div class="cardBackCover">
+          <div>虎</div>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardForeCover">
+          <img src="image/image4.png" />
+        </div>
+        <div class="cardBackCover">
+          <div>兔</div>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardForeCover">
+          <img src="image/image5.png" />
+        </div>
+        <div class="cardBackCover">
+          <div>龙</div>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardForeCover">
+          <img src="image/image6.png" />
+        </div>
+        <div class="cardBackCover">
+          <div>蛇</div>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardForeCover">
+          <img src="image/image7.png" />
+        </div>
+        <div class="cardBackCover">
+          <div>马</div>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardForeCover">
+          <img src="image/image8.png" />
+        </div>
+        <div class="cardBackCover">
+          <div>羊</div>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardForeCover">
+          <img src="image/image9.png" />
+        </div>
+        <div class="cardBackCover">
+          <div>猴</div>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardForeCover">
+          <img src="image/image10.png" />
+        </div>
+        <div class="cardBackCover">
+          <div>鸡</div>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardForeCover">
+          <img src="image/image11.png" />
+        </div>
+        <div class="cardBackCover">
+          <div>狗</div>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardForeCover">
+          <img src="image/image12.png" />
+        </div>
+        <div class="cardBackCover">
+          <div>猪</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<style>
+  html,
+  body {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .flexBox {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  img {
+    width: 96px;
+    height: 96px;
+  }
+
+  .cardBox div {
+    /*美化子级div*/
+    border-radius: 5px;
+    color: whitesmoke;
+    font-size: 32px;
+    /*设置flex布局，使图片以及文字居中*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cardBox {
+    width: 126px;
+    height: 224px;
+    position: relative;
+    perspective: 224px;
+    margin: 20px;
+  }
+
+  .cardForeCover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #5758b2;
+    transform: rotateY(-180deg); /*初始化表示正面的子级div相对于Y轴角度*/
+    transition: transform 0.5s ease-in-out; /*设置div旋转时所应用的过渡效果*/
+    backface-visibility: hidden; /*设置div隐藏其背面*/
+  }
+
+  .cardBackCover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #ed4846;
+    transform: rotateY(0deg); /*初始化表示背面的子级div相对于Y轴的角度*/
+    transition: transform 0.5s ease-in-out; /*设置div旋转时所应用的过渡效果*/
+    backface-visibility: hidden; /*设置div隐藏其背面*/
+  }
+
+  .cardBox:hover .cardForeCover {
+    transform: rotateY(
+      0deg
+    ); /*指定鼠标移动至父级div时，表示正面的子级div相对于Y轴的角的角度*/
+  }
+
+  .cardBox:hover .cardBackCover {
+    transform: rotateY(
+      180deg
+    ); /*指定鼠标移动至父级div时，表示背面的子级div相对于Y轴的角度*/
+  }
+</style>

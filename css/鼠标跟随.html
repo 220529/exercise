@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #aa {
+            /* width: 2000px;
+            height: 2000px; */
+        }
+
+        #qiu {
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            top: 0;
+            left: 0;
+            /* top: 100px;
+            left: 100px; */
+            position: absolute;
+        }
+
+        #t {
+            width: 100px;
+            top: -100%;
+            left: 100%;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="aa">
+        <div id="qiu">
+            <div id="t">100, 100</div>
+        </div>
+    </div>
+    <script>
+        const el = document.getElementById("qiu");
+        const t = document.getElementById("t");
+        // console.log("el.pageX", el.pageX);
+        window.addEventListener("mousemove", e => {
+            console.log("e.pageX, pageY", e.pageX, e.pageY);
+            console.log("e.clientX, clientY", e.clientX, e.clientY);
+            el.style.top = e.pageY - el.clientHeight + 'px';
+            el.style.left = e.pageX - el.clientWidth + 'px';
+            t.innerHTML = `${e.pageX},${e.pageY}`
+        })
+    </script>
+</body>
+
+</html>

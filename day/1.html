@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getWeek(dateTime) {
+        let temptTime = new Date(dateTime)
+        let weekday
+        // 如果是周日，则设为7
+        if (temptTime.getDay() == 6) {
+          weekday = 7
+        } else {
+          weekday = temptTime.getDay()
+        }
+        temptTime.setDate(temptTime.getDate() - weekday + 6)
+        let firstDay = new Date(temptTime.getFullYear(), 0, 1)
+        let dayOfWeek = firstDay.getDay()
+        let spendDay = 1
+        if (dayOfWeek != 0) {
+          spendDay = 7 - dayOfWeek + 1
+        }
+        firstDay = new Date(temptTime.getFullYear(), 0, 1 + spendDay)
+        let d = Math.ceil((temptTime.valueOf() - firstDay.valueOf()) / 86400000)
+        let result = Math.ceil(d / 7)
+        return result + 1
+      }
+      function change(datevalue, year) {
+        // this.clickDate = datevalue
+        let week = this.getWeek(datevalue) - 1
+        //获取周开始日期
+        const date1 = new Date(year, 0, 4)
+        date1.setDate(date1.getDate() - date1.getDay())
+        date1.setTime(date1.getTime() + 7 * 86400000 * (week - 1))
+        let year1 = date1.getFullYear()
+        let month1 = date1.getMonth() + 1
+        if (month1 >= 1 && month1 <= 9) {
+          month1 = '0' + month1
+        }
+        let dates1 = date1.getDate()
+        if (dates1 >= 1 && dates1 <= 9) {
+          dates1 = '0' + dates1
+        }
+        let startDate = year1 + '-' + month1 + '-' + dates1
+
+        //获取周结束日期
+        const date = new Date(year, 0, 4)
+        date.setDate(date.getDate() - date.getDay())
+        date.setTime(date.getTime() + 7 * 86400000 * week - 1)
+        let year2 = date.getFullYear()
+        let month2 = date.getMonth() + 1
+        if (month2 >= 1 && month2 <= 9) {
+          month2 = '0' + month2
+        }
+        let dates2 = date.getDate()
+        if (dates2 >= 1 && dates2 <= 9) {
+          dates2 = '0' + dates2
+        }
+        let endDate = year2 + '-' + month2 + '-' + dates2
+        return startDate + '~' + endDate
+      }
+      console.log(change("2023-05-28", "2023"));
+    </script>
+  </body>
+</html>

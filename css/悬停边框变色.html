@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .list li {
+      padding: 10px;
+      border-width: 1px;
+      border-color: yellow;
+      border-style: solid;
+      /* 初始状态，无边框 */
+      transition: border 0.3s;
+      /* 添加过渡效果 */
+      cursor: pointer;
+    }
+
+    .list li:hover {
+      border-color: red;
+      /* 鼠标悬浮时添加边框 */
+    }
+
+    .list li+li {
+      border-top-width: 1px;
+    }
+  </style>
+</head>
+
+<body>
+  <ul class="list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+  </ul>
+</body>
+
+</html>

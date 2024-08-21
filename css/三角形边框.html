@@ -1,0 +1,43 @@
+<!-- !DOCTYPE html> -->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <style>
+            #demo {
+                display: inline-block;
+                width: 0;
+                height: 0;
+                position: relative;
+                border-top: solid 17px transparent;
+                border-right: solid 17px red; /* 黑色大三角形 */
+                border-bottom: solid 17px transparent;
+            }
+            #demo:after {
+                content: '';
+                width: 0;
+                height: 0;
+                position: absolute;
+                left: 3px;
+                top: -15px;
+                border-top: solid 15px transparent;
+                border-right: solid 15px yellow; /* 白色小三角形 */
+                border-bottom: solid 15px transparent;
+            }
+            .lt {
+                width: 10px;
+                height: 10px;
+                border-left: 1px solid red;
+                border-bottom: 1px solid red;
+                background-color: blue;
+                transform: rotate(-135deg);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="demo"></div>
+        <div class="lt"></div>
+    </body>
+</html>

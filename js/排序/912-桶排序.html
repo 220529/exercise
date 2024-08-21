@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var sortArray = function (nums) {
+            const zs = [];
+            const fs = [];
+            // 分开正数、负数
+            for (let i = 0; i < nums.length; i++) {
+                const v = nums[i];
+                if (v > -1) {
+                    zs.push(v)
+                } else {
+                    fs.push(v)
+                }
+            }
+            /**
+             * 将原数据放到桶里。返回桶
+             * @param {存数据源的集合} source
+             */
+            function sortFn(source) {
+                if (source.length) {
+                    const book = new Array(Math.max(...source) + 1).fill(0);
+                    for (let i = 0; i < source.length; i++) {
+                        const v = source[i];
+                        // 正整数，桶的每个索引++
+                        book[source[i]]++
+                    }
+                    return book
+                }
+                return []
+            }
+            // 记录正数的桶
+            const zt = sortFn(zs);
+            // 记录负数的桶
+            const ft = sortFn(fs);
+            /**
+             * 将桶索引对应的数字，依次收集
+             * @param {存数据源的集合} source 
+             * @param {收集数据源的数组} collect 
+             * @param {是否是正整数} bool 
+             */
+            function collectFn(source, collect, bool) {
+                for (let i = 0; i < source.length; i++) {
+                    if (source[i]) {
+                        let l = source[i]
+                        while (l) {
+                            bool ? collect.push(i) : collect.unshift(-i)
+                            l--
+                        }
+                    }
+                }
+            }
+            const zr = [];
+            const fr = [];
+            if (zs.length) {
+                collectFn(zt, zr, true);
+            }
+            if (fs.length) {
+                collectFn(ft, fr, false);
+            }
+            return [...fr, ...zr]
+        };
+        const a = sortArray([5, 2, 3, 1]);
+        console.log("a", a);
+    </script>
+</body>
+
+</html>

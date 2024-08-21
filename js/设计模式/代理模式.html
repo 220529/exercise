@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var imgFunc = (function () {
+      var imgNode = document.createElement('img');
+      document.body.appendChild(imgNode);
+      return {
+        setSrc: function (src) {
+          imgNode.src = src;
+        }
+      }
+    })();
+    var proxyImage = (function () {
+      var img = new Image();
+      img.onload = function () {
+        imgFunc.setSrc(this.src);
+      }
+      return {
+        setSrc: function (src) {
+          // 先设置loading
+          imgFunc.setSrc('./loading,gif');
+          img.src = src;
+        }
+      }
+    })();
+    proxyImage.setSrc('./pic.png');
+  </script>
+</body>
+
+</html>

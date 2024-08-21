@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const obj = {
+        //     a: 1
+        // }
+
+        function fn0() {
+            console.log("f0.a", Array.isArray(arguments))
+            // console.log("fn0.this", this)
+        }
+        fn0(8, 4)
+        // fn0.bind(obj)(10, 35)
+        const fn1 = (...a) => {
+            // console.log("fn1.ar", arguments)
+            console.log("fn1.a", Array.isArray(a))
+            // console.log("fn1.this", this)
+        }
+        fn1(2, 6)
+        // fn1.bind(obj)()
+        // const obj2 = {
+        //     name: '5673'
+        // }
+        // const obj = {
+        //     name: 'abc',
+        //     getName: function () {
+        //         // console.log("this", this);
+        //         // const a = () => {
+        //         //     console.log("A", this);
+        //         // }
+        //         function a() {
+        //             console.log("A2", this);
+        //         }
+        //         return a
+        //     },
+        //     getName2: () => {
+        //         console.log("this", this);
+        //     }
+        // }
+        // obj.getName().bind(obj2)()
+        // obj.getName2()
+        // const obj = {
+        //     name: 'kx'
+        // }
+        // obj.__proto__.getName = () => {
+        //     console.log("this", this)
+        // }
+        // obj.getName()
+        // const F = (name, age) => {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // console.log("F", F);
+        // const f = new F("aa", 18)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            function red() {
+                console.log('red')
+            }
+            function green() {
+                console.log('green')
+            }
+            function yellow() {
+                console.log('yellow')
+            }
+            function fnRun(fn, delay) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => resolve(fn()), delay)
+                })
+            }
+            async function fnLoop1(run, arr) {
+                for (let i = 0; i < arr.length; i++) {
+                    const { fn, delay } = arr[i]
+                    await run(fn, delay)
+                }
+                console.log('over')
+                fnLoop1(run, arr)
+            }
+            // fnLoop1(fnRun, [
+            //     { fn: red, delay: 3000 },
+            //     { fn: green, delay: 2000 },
+            //     { fn: yellow, delay: 1000 }
+            // ])
+            function fnLoop2() {
+                Promise.resolve()
+                    .then(() => {
+                        return fnRun(red, 3000)
+                    })
+                    .then(() => {
+                        return fnRun(green, 2000)
+                    })
+                    .then(() => {
+                        return fnRun(yellow, 1000)
+                    })
+                    .then(fnLoop2)
+            }
+            fnLoop2()
+        </script>
+    </body>
+</html>

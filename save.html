@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save Image</title>
+</head>
+<body>
+  <img id="myImage" src="https://lagou-zhaopin-fe.lagou.com/fed/mds-easy-fed/img/8.14.0/%E7%BC%96%E7%BB%84%206%402x.png" alt="Your Image">
+  <button onclick="saveImage()">Save Image</button>
+
+  <script>
+    function saveImage() {
+      // var canvas = document.createElement('canvas');
+      // var img = document.getElementById('myImage');
+      // canvas.width = img.width;
+      // canvas.height = img.height;
+      // var context = canvas.getContext('2d');
+      // context.drawImage(img, 0, 0);
+
+      // // 使用 toDataURL 将 canvas 转换为 data URL
+      // var dataURL = canvas.toDataURL('image/png');
+
+      // 创建一个虚拟的 a 元素用于下载
+      var a = document.createElement('a');
+      a.href = canvas.toDataURL('image/png');
+      a.download = 'saved_image.png';
+
+      // 模拟点击下载链接
+      a.click();
+    }
+  </script>
+</body>
+</html>

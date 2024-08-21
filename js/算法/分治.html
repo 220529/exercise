@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分治</title>
+</head>
+
+<body>
+  <script>
+    // 原地交换函数，而非用临时数组 
+    // function swap(array, a, b) {
+    //   ;
+    //   [array[a], array[b]] = [array[b], array[a]]
+    // }
+    // // 划分操作函数
+    // function partition(array, left, right) {
+    //   // 用index取中间值而非splice
+    //   const pivot = array[Math.floor((right + left) / 2)]
+    //   let i = left
+    //   let j = right
+    //   while (i <= j) {
+    //     while (compare(array[i], pivot) === -1) {
+    //       i++
+    //     }
+    //     while (compare(array[j], pivot) === 1) {
+    //       j--
+    //     }
+    //     if (i <= j) {
+    //       swap(array, i, j)
+    //       i++
+    //       j--
+    //     }
+    //   }
+    //   return i
+    // }
+    // // 比较函数
+    // function compare(a, b) {
+    //   if (a === b) {
+    //     return 0
+    //   }
+    //   return a < b ? -1 : 1
+    // }
+
+    // function quick(array, left, right) {
+    //   let index
+    //   if (array.length > 1) {
+    //     index = partition(array, left, right)
+    //     if (left < index - 1) {
+    //       quick(array, left, index - 1)
+    //     }
+    //     if (index < right) {
+    //       quick(array, index, right)
+    //     }
+    //   }
+    //   return array
+    // }
+
+    // function quickSort(array) {
+    //   return quick(array, 0, array.length - 1)
+    // }
+    // const Arr = [85, 24, 63, 45, 17, 31, 96, 50];
+    // console.log(quickSort(Arr));
+    let arr = [85, 24, 63, 45, 17, 31, 96, 50, 0, 2, 1, 49, -2, 1, 2]
+    var a = 0
+
+    function _q(arr) {
+      if (arr.length < 2) {
+        return arr
+      }
+      let l = []
+      let r = []
+      let m = []
+      let s = arr[0]
+      arr.forEach(i => {
+        a++
+        if (i < s) {
+          l.push(i)
+        } else if (i > s) {
+          r.push(i)
+        } else {
+          m.push(i)
+        }
+      })
+      return [..._q(l), ...m, ..._q(r)]
+    }
+
+    var b = 0
+
+    function _f(arr) {
+      let l = arr.length
+      for (let i = 0; i < l; i++) {
+        for (let j = i + 1; j < l; j++) {
+          b++
+          if (arr[j] < arr[i]) {
+            let t = arr[i]
+            arr[i] = arr[j]
+            arr[j] = t
+          }
+        }
+      }
+      // return arr
+    }
+    // console.log("arr", arr);
+    _q(arr)
+    console.log("_q", a, arr);
+    _f(arr)
+    console.log("_f", b, arr);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container li {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="container"></ul>
+    <script>
+        const pl = document.getElementById("container");
+        // 步骤一:创建异步对象
+        const xml = new XMLHttpRequest();
+        // 步骤二:设置请求的url参数,参数一是请求的类型,参数二是请求的url,可以带参数
+        xml.open("get", "http://localhost:8000/");
+        // 步骤三:发送请求
+        xml.send()
+        // 步骤四:注册事件 onreadystatechange 状态改变就会调用
+        xml.onreadystatechange = function (e) {
+            // console.log("e", e);
+            if (e.target.readyState === 4 && e.target.status === 200) {
+                const res = JSON.parse(e.target.response);
+                // console.log("res", res);
+                // fnRenderDataToEl(res);
+                fnRenderDataToEl2(res);
+                fnRenderDataToEl3(res);
+                fnRenderDataToEl4(res);
+            }
+        }
+
+        function fnRenderDataToEl(res) {
+            console.time("直接渲染")
+            for (let i = 0; i < res.length; i++) {
+                const v = res[i];
+                const li = document.createElement("li");
+                li.innerHTML = `<img src=${v.url} alt='' />`;
+                pl.appendChild(li)
+            }
+            console.log("end")
+            setTimeout(() => {
+                console.timeEnd("直接渲染")
+            }, 0)
+        }
+        const fnRenderDataToEl2 = res => {
+            const total = res.length
+            const page = 0
+            const limit = 200
+            const totalPage = Math.ceil(total / limit)
+            console.time("setTimeout渲染")
+            const render = (page) => {
+                if (page >= totalPage) return
+                setTimeout(() => {
+                    for (let i = page * limit; i < page * limit + limit; i++) {
+                        const item = res[i]
+                        const div = document.createElement('div')
+                        div.className = 'sunshine'
+                        div.innerHTML = `<img src="${item.url}" />`
+                        pl.appendChild(div)
+                    }
+                    render(page + 1)
+                }, 0)
+            }
+            render(page)
+            setTimeout(() => {
+                console.timeEnd('setTimeout渲染')
+            }, 0)
+        }
+        const fnRenderDataToEl3 = res => {
+            const total = res.length
+            const page = 0
+            const limit = 200
+            const totalPage = Math.ceil(total / limit)
+            console.time("requestAnimationFrame渲染")
+            const render = (page) => {
+                if (page >= totalPage) return
+                requestAnimationFrame(() => {
+                    for (let i = page * limit; i < page * limit + limit; i++) {
+                        const item = res[i]
+                        const div = document.createElement('div')
+                        div.className = 'sunshine'
+                        div.innerHTML = `<img src="${item.url}" />`
+                        pl.appendChild(div)
+                    }
+                    render(page + 1)
+                })
+            }
+            render(page)
+            setTimeout(() => {
+                console.timeEnd('requestAnimationFrame渲染')
+            }, 0)
+        }
+        const fnRenderDataToEl4 = res => {
+            const total = res.length
+            const page = 0
+            const limit = 200
+            const totalPage = Math.ceil(total / limit)
+            console.time("fragment渲染")
+            const render = (page) => {
+                if (page >= totalPage) return
+                requestAnimationFrame(() => {
+                    const fragment = document.createDocumentFragment()
+                    for (let i = page * limit; i < page * limit + limit; i++) {
+                        const item = res[i]
+                        const div = document.createElement('div')
+                        div.className = 'sunshine'
+                        div.innerHTML = `<img src="${item.url}" />`
+                        fragment.appendChild(div)
+                    }
+                    pl.appendChild(fragment)
+                    render(page + 1)
+                })
+            }
+            render(page)
+            setTimeout(() => {
+                console.timeEnd('fragment渲染')
+            }, 0)
+        }
+    </script>
+</body>
+
+</html>

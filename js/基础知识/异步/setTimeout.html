@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            var b = '2'
+            function abc() {
+                let b = 1
+                ++b
+                setTimeout(() => {
+                    test('fun test')
+                }, 0)
+                setTimeout(test('test fun'), 1000)
+                console.log(b)
+                function test(str) {
+                    this.b++
+                    console.log(str)
+                    console.log(this.b++)
+                }
+            }
+            abc()
+            // test fun
+            // 3
+            // 2
+            // fun test
+            // 5
+            // 第一个参数是立即执行函数，会被立即执行。给执行函数传参可以用字符串形式，或者传参
+            function fnHello(name) {
+                console.log('hello, ' + name)
+            }
+            setTimeout(fnHello('tony'), 2000)
+            setTimeout("fnHello('jack')", 2000)
+            setTimeout(fnHello, 2000, 'li')
+        </script>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深拷贝</title>
+</head>
+
+<body>
+  <script>
+    var obj = {
+      a: 1,
+      b: {
+        c: 2,
+        d: {
+          e: 3
+        }
+      },
+      fn: function () {
+        console.log("fn.......");
+      },
+      f: [{
+        g: 1
+      }, 2]
+    }
+
+    function cloneDeep(obj) {
+      let newObj = {}
+
+      function isObj(_obj) {
+        return (typeof _obj === "object" || typeof _obj === "object") && _obj !== null
+      }
+      if (!isObj(obj)) {
+        return obj
+      }
+      if (Array.isArray(obj)) {
+        newObj = []
+        obj.forEach((item, i) => {
+          newObj[i] = cloneDeep(item)
+        })
+      } else {
+        Object.keys(obj).forEach(key => {
+          if (isObj(obj[key])) {
+            newObj[key] = cloneDeep(obj[key])
+          } else {
+            newObj[key] = obj[key]
+          }
+        })
+      }
+      return newObj
+    }
+    var newObj = cloneDeep(obj)
+    console.log("newObj", newObj);
+    newObj.f[0].g = 34344
+    newObj.b.c = 10000
+    console.log("obj", obj);
+  </script>
+</body>
+
+</html>

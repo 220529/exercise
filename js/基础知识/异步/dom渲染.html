@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="container"></div>
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            const $p1 = $('<p>一段文字</p>')
+            const $p2 = $('<p>一段文字</p>')
+            const $p3 = $('<p>一段文字</p>')
+            $('#container').append($p1).append($p2).append($p3)
+            alert('p.length:' + $('#container').children().length)
+            Promise.resolve().then(() => {
+                alert('Promise.resolve')
+            })
+            setTimeout(function () {
+                alert('setTimeout')
+            })
+        </script>
+    </body>
+</html>
+<script>
+    // 宏任务：setTimeout setInterval DOM 事件 ajax
+    // 微任务：Promise
+    // - 微任务比宏任务执行的更早
+
+    // js执行和dom渲染是用的同一线程，使用alert来阻断js执行，也会阻断dom渲染。可以判断各任务执行的优先级
+    // 以上代码执行结果：
+    // 第1个alert弹出p的长度是3，但页面上没有看到三个p元素，说明dom的渲染被阻断了
+    // 第2个alert弹出Promise，还是没看到三个p元素，dom的渲染还在处于被阻断的状态
+    // 第3个alert弹出setTimeout，页面出现了三个p元素，说明dom渲染结束
+    // 由此可以得到执行顺序：Promise > dom 渲染 > 定时器
+
+    // 为什么Promise和定时器，前者在dom渲染前，后者在dom渲染后？
+
+    // 微任务Promise是es6解决异步的一种方案，是js范畴内的，不需要经过浏览器
+    // 宏任务不属于es语法，不是js引擎处理的，属于浏览器干预处理的
+
+    // 另外，按照 event loop 触发 DOM 渲染时机，setTimeout 时 alert ，就能看到 DOM 渲染后的结果了
+
+    // alert('本次 call stack 结束，DOM 结构已更新，但尚未触发渲染')
+    // （alert 会阻断 js 执行，也会阻断 DOM 渲染，便于查看效果）
+    // 到此，即本次 call stack 结束后（同步任务都执行完了），浏览器会自动触发渲染，不用代码干预
+</script>

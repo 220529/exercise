@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>斐波那契</title>
+</head>
+
+<body>
+  <script>
+    let count = 0;
+
+    function fn(n) {
+      let cache = {};
+
+      function _fn(n) {
+        if (cache[n]) {
+          return cache[n];
+        }
+        count++;
+        if (n == 1 || n == 2) {
+          return 1;
+        }
+        let prev = _fn(n - 1);
+        cache[n - 1] = prev;
+        let next = _fn(n - 2);
+        cache[n - 2] = next;
+        return prev + next;
+      }
+      return _fn(n);
+    }
+    let count2 = 0;
+
+    function fn2(n) {
+      count2++;
+      if (n == 1 || n == 2) {
+        return 1;
+      }
+      return fn2(n - 1) + fn2(n - 2);
+    }
+
+    let count3 = 0
+
+    function _fn(n) {
+      let cache = {}
+
+      function _f(n) {
+        if (cache[n]) {
+          return cache[n]
+        }
+        count3++
+        if (n < 2) {
+          return n
+        }
+        let pre = _f(n - 1)
+        cache[n - 1] = pre
+        let next = _f(n - 2)
+        cache[n - 2] = next
+        return pre + next
+      }
+      return _f(n)
+    }
+    console.log(fn(20), count); // 6765 20
+    console.log(fn2(20), count2); // 6765 20
+    console.log(_fn(20), count3); // 6765 20
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var myPow = function (x, n) {
+            if (x === 1 || n === 0) {
+                return 1
+            }
+            if (n < 0) {
+                n = -n
+                x = 1 / x
+            }
+            let s = 1;
+            while (n > 0) {
+                if (n & 1) {
+                    s *= x;
+                }
+                if (n === 1) {
+                    return s
+                }
+                x *= x;
+                n = n >>> 1;
+            }
+        };
+
+        const a = myPow(2.00000, -2147483648);
+    </script>
+</body>
+
+</html>
