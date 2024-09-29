@@ -1,0 +1,29 @@
+/* 设置页面背景颜色和文本样式 */
+body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 20px;
+}
+
+/* 标题样式 */
+h1 {
+  color: #0066cc;
+  text-align: center;
+  font-size: 2em;
+}
+
+/* 图片样式 */
+img {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #ccc;
+}
+
+/* 段落样式 */
+p {
+  font-size: 1.2em;
+  text-align: center;
+}

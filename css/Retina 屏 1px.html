@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retina 屏幕 1px 边框示例</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+
+      .box {
+        width: 200px;
+        height: 200px;
+        margin: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* 普通 1px 边框（在 Retina 屏幕上看起来较粗） */
+      .box-1px {
+        border: 1px solid black;
+      }
+
+      /* 使用 0.5px 边框（适合 Retina 屏幕，部分浏览器支持） */
+      .box-0_5px {
+        border: 0.5px solid black;
+      }
+
+      /* 使用 transform: scale 实现 1px 视觉效果 */
+      .box-scale {
+        position: relative;
+      }
+
+      .box-scale::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px solid black;
+        transform: scale(0.5);
+        transform-origin: top left;
+        pointer-events: none; /* 防止干扰点击操作 */
+      }
+
+      /* 使用背景图片模拟 1px 边框 */
+      .box-background {
+        background-image: linear-gradient(to right, black 1px, transparent 1px),
+          linear-gradient(to bottom, black 1px, transparent 1px);
+        background-size: 100% 100%, 100% 100%;
+        background-position: 0 0, 0 0;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box box-1px">普通 1px 边框</div>
+
+    <div class="box box-0_5px">0.5px 边框</div>
+
+    <div class="box box-scale">使用 scale 缩放</div>
+
+    <div class="box box-background">背景图片模拟</div>
+  </body>
+</html>
